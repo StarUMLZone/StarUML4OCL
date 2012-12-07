@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<OPTIONSCHEMA id="StarUML.StarUML4OCL"> 
+  <HEADER>
+		<CAPTION>OCL</CAPTION> 
+		<DESCRIPTION>OCL support</DESCRIPTION> 
+	</HEADER>
+  <BODY>
+	
+    <OPTIONCATEGORY>
+      <CAPTION>Installation</CAPTION>
+      <DESCRIPTION>Configuration of the OCL USE Installation</DESCRIPTION>
+      <OPTIONCLASSIFICATION>
+				<CAPTION>USE OCL Installation</CAPTION>
+        <DESCRIPTION></DESCRIPTION>
+          
+				<OPTIONITEM-PATHNAME key="USEOCLHome">
+					<CAPTION>Home Directory</CAPTION>
+					<DESCRIPTION>Path to home directory of the USE OCL installation (e.g. c:\Program Files\use-3.0.4)</DESCRIPTION>
+					<DEFAULTVALUE>c:\Program Files\user-3.0.4\</DEFAULTVALUE>
+				</OPTIONITEM-PATHNAME>
+					
+				<OPTIONITEM-STRING key="USEOCLExecutable">
+					<CAPTION>Executable</CAPTION>
+					<DESCRIPTION>Relative path to the executable within the USE OCL home directory (e.g. bin\use.bat)</DESCRIPTION>
+					<DEFAULTVALUE>bin\use.bat</DEFAULTVALUE>
+				</OPTIONITEM-STRING>
+			</OPTIONCLASSIFICATION>
+		</OPTIONCATEGORY>
+		
+		
+		<OPTIONCATEGORY>
+			<CAPTION>Generation</CAPTION>
+      <DESCRIPTION>Configuration of the generation</DESCRIPTION>
+			
+			<OPTIONCLASSIFICATION>
+				<CAPTION>Generation of .use files</CAPTION>
+        <DESCRIPTION>Options for the generation of ".use" files</DESCRIPTION>
+				<OPTIONITEM-BOOLEAN key="launchEditorAutomatically">
+					<CAPTION>launch editor</CAPTION>
+					<DESCRIPTION>launch the editor automatically after the generation of .use files</DESCRIPTION>
+					<DEFAULTVALUE>True</DEFAULTVALUE>
+				</OPTIONITEM-BOOLEAN>
+      </OPTIONCLASSIFICATION>
+			
+    </OPTIONCATEGORY>
+		
+		<OPTIONCATEGORY>
+			<CAPTION>USE Execution</CAPTION>
+      <DESCRIPTION>Configuration of the execution of USE OCL</DESCRIPTION>
+			
+			<OPTIONCLASSIFICATION>
+				<CAPTION>Execution</CAPTION>
+        <DESCRIPTION>Options for the execution</DESCRIPTION>
+				<OPTIONITEM-BOOLEAN key="interactive">
+					<CAPTION>Interactive</CAPTION>
+					<DESCRIPTION>launch the editor automatically after the generation of .use files</DESCRIPTION>
+					<DEFAULTVALUE>False</DEFAULTVALUE>
+				</OPTIONITEM-BOOLEAN>
+      </OPTIONCLASSIFICATION>
+			
+    </OPTIONCATEGORY>
+
+		
+	</BODY>
+</OPTIONSCHEMA>

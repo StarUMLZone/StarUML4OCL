@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ADDIN>
+    <NAME>StarUML4OCL</NAME>
+    <DISPLAYNAME>StarUML4OCL</DISPLAYNAME>
+    <ISACTIVE>True</ISACTIVE>
+    <MENUFILE>StarUML4OCL.mnu</MENUFILE>
+</ADDIN>

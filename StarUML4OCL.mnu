@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<ADDINMENU addInID="StarUML4OCL">
+    <BODY>
+        <MAINMENU>
+            <MAINITEM base="NEW_TOP" index="5" caption="OCL">
+							<MAINITEM caption="Generate USE files" script="GenerateUSEFiles.js"/>
+							<MAINITEM caption="Generate Snapshot sheets" script="GenerateSnapshotSheets.js"/>
+							<MAINITEM caption="Generate SOIL files" script="GenerateSoilFiles.js"/>
+							<MAINITEM caption="Execute USE" script="ExecuteUSEOCL.js"/>
+							<MAINITEM caption="Generate Snapshot diagrams" script="GenerateSnapshotDiagram.js"/>
+						</MAINITEM>
+        </MAINMENU>
+    </BODY>
+</ADDINMENU>
