@@ -1,0 +1,299 @@
+model CyberHotel
+
+--================================================================
+--                Vision batiment - Structure
+--================================================================
+
+class Residence
+attributes
+  etageMin : Integer
+  etageMax : Integer
+  nbEtoiles : Integer
+  nbPlacesMax : Integer -- derived 
+  tarifMoyen : Real -- derived
+operations
+	-- chambres() est l'ensemble des chambres de la résidence 
+  chambres() : Set(Chambre) 
+	  = salles->select(oclIsKindOf(Chambre))->oclAsType(Set(Chambre))
+	-- un chambre est dite utile si elle n'est pas en travaux		
+  chambresUtiles() : Set(Chambre)  
+	  -- TODO
+	-- sallesDeBain() est l'ensemble des salles de bain de la résidence
+  sallesDeBain() : Set(SalleDeBain)
+	  -- TODO
+end
+
+class Salle
+attributes
+  numero : Integer
+  etage : Integer -- derived
+  enTravaux : Boolean
+end
+
+class SalleDeBain < Salle
+attributes
+  estSurLePallier : Boolean gogo
+end
+
+class Chambre < Salle
+attributes
+  nbLitsSimples : Integer
+  nbLitsDoubles : Integer
+  prix : Real
+end
+
+composition ComporteSalles between
+  Residence[1] role residence
+  Salle[*] role salles
+end
+
+association EstPrivativeDe between
+  SalleDeBain[0..3] role sallesDeBainPrivatives
+  Chambre[0..1] role chambre
+end
+
+
+
+	
+	
+--================================================================
+--                Vision location - Structure
+--================================================================
+
+
+-- TODO class Resident 
+
+-- TODO class Locataire 
+
+-- TODO associationclass LocationDUneChambre 
+-- see the documentation for an example of an associationclass
+
+-- TODO association EstOccupeePar
+
+-- TODO class Reduction
+
+-- TODO composition BeneficieDe
+
+
+
+
+constraints
+
+
+--================================================================
+--                Vision batiment - Contraintes
+--================================================================
+
+
+------------------------------------------------------------------------------------
+-- inv ordreEtages, inv domaine_nbEtoiles
+-- Contraintes élémentaires sur le nombre d'Etoiles et les étages
+------------------------------------------------------------------------------------
+
+context Residence
+inv ordreEtages: 
+  etageMin <= etageMax
+inv domaine_nbEtoiles: 
+  nbEtoiles >= 1 and nbEtoiles <= 5
+
+------------------------------------------------------------------------------------
+-- inv etageEntreMinEtMax
+-- L'étage d'une salle fait partie des étages de l'hotel
+------------------------------------------------------------------------------------
+
+context Salle
+inv etageEntreMinEtMax: 
+  etage >= residence.etageMin and 
+  etage <= residence.etageMax
+
+------------------------------------------------------------------------------------
+-- inv numero3ChiffresAuMinimum, inv definition_etage 
+-- Le numéro d'une salle est formé par le numéro d'étage puis, pour les deux derniers 
+-- chiffres, par le numéro de salle qui ne peut être nul. 
+-- Par exemple 1402 est le numéro d'une salle qui se trouve au 14° étage. 
+-- Il n'existe pas de salle 1400.
+------------------------------------------------------------------------------------
+
+-- TODO
+
+------------------------------------------------------------------------------------
+-- inv definition_estSurLePallier
+-- Toutes les salles de bains qui ne sont pas associées à une chambre sont sur le pallier.
+------------------------------------------------------------------------------------
+
+-- TODO
+
+------------------------------------------------------------------------------------
+-- inv numeroUniqueSaufSDBDePallier, inv memeNumeroQueChambreSiPrivative
+-- Toutes les salles ont un numéro différent, sauf les salles de bains "privées" 
+-- qui ont toutes le même numéro que la chambre à laquelle elles sont associées.
+------------------------------------------------------------------------------------
+
+-- TODO
+
+------------------------------------------------------------------------------------
+-- inv auMoins1Lit
+-- Il y a au moins un lit par chambre
+------------------------------------------------------------------------------------
+
+context Chambre
+inv auMoins1Lit: 
+  not enTravaux implies nbLitsSimples + nbLitsDoubles >= 1
+
+------------------------------------------------------------------------------------
+-- inv definition_nbPlacesMax
+-- Le nombre de places maximum dans l'hotel est calculé à partir du nombre de lits
+------------------------------------------------------------------------------------
+
+-- TODO
+
+------------------------------------------------------------------------------------
+-- inv troisEtoiles
+-- Dans une résidence 3 étoiles, toutes les chambres utiles ont au moins une salle 
+-- de bain qui n'est pas en travaux
+------------------------------------------------------------------------------------
+
+-- TODO
+
+	
+	
+
+
+
+
+
+
+
+
+
+--================================================================
+--                Vision location - Contraintes
+--================================================================
+
+
+------------------------------------------------------------------------------------
+-- inv locataireDansChambreOccupee
+-- Le locataire d'une chambre occupe l'une des chambres qu'il a loué
+------------------------------------------------------------------------------------
+
+-- TODO
+
+------------------------------------------------------------------------------------
+-- inv locationDansMemeResidence
+-- Toutes les chambres louées par un locataire sont dans la même résidence
+------------------------------------------------------------------------------------
+
+-- TODO
+	
+------------------------------------------------------------------------------------
+-- inv locataireAdulte
+-- Seuls les adultes peuvent louer une chambre
+------------------------------------------------------------------------------------
+
+-- TODO
+
+------------------------------------------------------------------------------------
+-- inv occupationMaximaleDUneChambre
+-- Il ne peut pas y avoir plus de personnes dans une chambre que le nombre de places
+-- correspondant.  Les enfants de moins de deux ans ne comptent pas dans cette règle.
+------------------------------------------------------------------------------------
+
+-- TODO
+
+------------------------------------------------------------------------------------
+-- inv auMoinsUnAdulteParChambre
+-- Il doit y avoir au moins un adulte par chambre
+------------------------------------------------------------------------------------
+
+-- TODO
+
+------------------------------------------------------------------------------------
+-- inv pasDOccupantDansUneChambreLouee
+-- Il n'y a des occupants que dans les chambres louées
+------------------------------------------------------------------------------------
+
+-- TODO
+
+------------------------------------------------------------------------------------
+-- inv enTravauxPasLouee
+-- Une chambre en travaux ne peut pas être louée
+------------------------------------------------------------------------------------
+
+-- TODO
+	
+------------------------------------------------------------------------------------
+-- inv pasDeChambreLoueeVide
+-- Toutes les chambres louées sont occupées par au moins un occupant
+------------------------------------------------------------------------------------
+
+-- TODO
+
+------------------------------------------------------------------------------------
+-- inv domaine_estPourcentage
+-- Le taux associé à une réduction est un pourcentage
+------------------------------------------------------------------------------------
+
+-- TODO
+
+------------------------------------------------------------------------------------
+-- inv labelDeReductionUnique
+-- Toutes les réductions associées à la location d'une chambre doivent avoir des 
+-- labels différents
+------------------------------------------------------------------------------------
+
+-- TODO
+	
+------------------------------------------------------------------------------------
+-- inv ctrav50, inv ctrav20
+-- Une réduction de 20% est accordée sur la location des chambres qui ont une salle 
+-- de bains en travaux. Cette réduction passe à 50% dans le cas où toutes les salles 
+-- de bains de la chambre sont en travaux. Dans les deux cas, le label associé à la 
+-- réduction est "CTrav" 
+------------------------------------------------------------------------------------
+
+-- TODO
+	
+
+------------------------------------------------------------------------------------
+-- inv tauxCumulesLimite
+-- Le montant total des réductions consenties pour la location d'un chambre doit
+-- être inférieur à 70%
+------------------------------------------------------------------------------------
+
+-- TODO
+
+------------------------------------------------------------------------------------
+-- definition_reduction
+-- Le montant de la réduction consentie pour la location d'une chambre correspond à
+-- la somme des réductions associées à la location de cette chambre par le prix total 
+-- de la chambre.
+------------------------------------------------------------------------------------
+
+-- TODO
+
+------------------------------------------------------------------------------------
+-- definition_prix
+-- Le prix de location d'une chambre est le prix de la chambre après déduction de
+-- la réduction consentie.
+------------------------------------------------------------------------------------
+
+-- TODO
+
+------------------------------------------------------------------------------------
+-- definition_prixPaye
+-- Le prix total payé par un locataire est la somme des prix payés pour chaque 
+-- chambre qu'il à loué. Une remise de 20€ est faite dans le cas ou tous les membres
+-- du groupe de location ne sont pas logés au même étage.
+------------------------------------------------------------------------------------
+
+-- TODO
+
+------------------------------------------------------------------------------------
+-- definiton_tarifMoyen
+-- Le "tarif moyen" associé à une résidence est le revenu total de la résidence 
+-- divisé par le nombre d'occupants sachant que les enfants mineurs ne sont pas pris 
+-- en compte
+------------------------------------------------------------------------------------
+
+-- TODO
+

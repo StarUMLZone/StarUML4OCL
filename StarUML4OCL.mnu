@@ -3,11 +3,11 @@
     <BODY>
         <MAINMENU>
             <MAINITEM base="NEW_TOP" index="5" caption="OCL">
-							<MAINITEM caption="Generate USE files" script="GenerateUSEFiles.js"/>
-							<MAINITEM caption="Generate Snapshot sheets" script="GenerateSnapshotSheets.js"/>
-							<MAINITEM caption="Generate SOIL files" script="GenerateSoilFiles.js"/>
-							<MAINITEM caption="Execute USE" script="ExecuteUSEOCL.js"/>
-							<MAINITEM caption="Generate Snapshot diagrams" script="GenerateSnapshotDiagram.js"/>
+							<MAINITEM caption="Generate USE files" script="src\GenerateUSEFiles.js"/>
+							<MAINITEM caption="Generate Snapshot sheets" script="src\GenerateSnapshotSheets.js"/>
+							<MAINITEM caption="Generate SOIL files" script="src\GenerateSoilFiles.js"/>
+							<MAINITEM caption="Execute USE" script="src\ExecuteUSEOCL.js"/>
+							<MAINITEM caption="Generate Snapshot diagrams" script="src\GenerateSnapshotDiagram.js"/>
 						</MAINITEM>
         </MAINMENU>
     </BODY>
